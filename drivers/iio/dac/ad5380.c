@@ -401,7 +401,7 @@ static int ad5380_probe(struct device *dev, struct regmap *regmap,
 	if (st->chip_info->int_vref == 2500)
 		ctrl |= AD5380_CTRL_INT_VREF_2V5;
 
-	st->vref_reg = devm_regulator_get(dev, "vref");
+	st->vref_reg = devm_regulator_get_optional(dev, "vref");
 	if (!IS_ERR(st->vref_reg)) {
 		ret = regulator_enable(st->vref_reg);
 		if (ret) {
